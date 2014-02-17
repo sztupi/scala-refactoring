@@ -1043,7 +1043,7 @@ trait PimpedTrees {
                 val nameLength = newVal.name.length
                 val namePos = (t.pos withStart (nameStart + startOffset) withPoint nameStart + startOffset + nameLength)
                 newVal.nameTree setPos namePos
-                newVal setPos namePos.withEnd(t.pos.end)
+                newVal setPos namePos.withEnd(scala.util.Try(t.pos.end).getOrElse(t.pos.point))
                 newVal
               } else /*no named argument*/ {
                 t.rhs
